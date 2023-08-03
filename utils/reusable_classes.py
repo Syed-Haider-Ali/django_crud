@@ -1,6 +1,16 @@
+from django.db import models
+
 from utils.reusable_methods import create_response, paginate_data
 from utils.response_messages import *
 from utils.reusable_methods import get_first_error_message
+
+
+class TimeStamps(models.Model):
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract=True
 
 
 class BaseAPIController:

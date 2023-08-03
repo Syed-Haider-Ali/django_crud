@@ -1,12 +1,11 @@
 from django.db import models
+from utils.reusable_classes import TimeStamps
 
 
-class Make(models.Model):
+class Make(TimeStamps):
     name = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-class Vechile(models.Model):
+   
+class Vechile(TimeStamps):
     name = models.CharField(max_length=100)
     make = models.ForeignKey(Make, on_delete=models.CASCADE)
     model = models.IntegerField()
