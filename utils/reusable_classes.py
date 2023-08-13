@@ -33,7 +33,7 @@ class BaseAPIController:
         filtered_data = self.filterset_class(request.GET, queryset=instances)
         data = filtered_data.qs
         
-        if not data:   # filtered_qs
+        if not data:   
             return create_response({}, NO_RECORD, status_code=200)
         paginated_data = paginate_data(data, request)
         count = data.count()
