@@ -6,8 +6,8 @@ from utils.reusable_methods import get_first_error_message
 
 
 class TimeStamps(models.Model):
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract=True
