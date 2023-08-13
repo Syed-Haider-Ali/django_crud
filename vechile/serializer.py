@@ -8,6 +8,11 @@ class VechileSerializer(ModelSerializer):
         model = Vechile
         fields ='__all__'
 
+    def to_representation(self, instance):
+        data = super(VechileSerializer, self).to_representation(instance)
+        data["make"] = MakeSerializer(instance.make).data
+        return data
+
 
 class MakeSerializer(ModelSerializer):
     class Meta:
