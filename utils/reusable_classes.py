@@ -23,9 +23,9 @@ class BaseAPIController:
         if serialized_data.is_valid():
             instance = serialized_data.save()
             response_data = self.serializer_class(instance).data
-            return create_response(response_data, SUCCESSFUL, status_code=200)
+            return create_response(response_data, SUCCESSFUL, 200)
         else:
-            return create_response({},get_first_error_message(serialized_data.errors,UNSUCCESSFUL), status_code=400)
+            return create_response({},get_first_error_message(serialized_data.errors,UNSUCCESSFUL), 400)
         
     def get(self,request):
         instances = self.serializer_class.Meta.model.objects.all()
@@ -34,7 +34,7 @@ class BaseAPIController:
         data = filtered_data.qs
         
         if not data:   
-            return create_response({}, NO_RECORD, status_code=200)
+            return create_response({}, NO_RECORD, 200)
         paginated_data = paginate_data(data, request)
         count = data.count()
         
@@ -43,29 +43,29 @@ class BaseAPIController:
             "count":count,
             "data":serialized_data,
         }
-        return create_response(response_data, SUCCESSFUL, status_code=200)
+        return create_response(response_data, SUCCESSFUL, 200)
 
     def update(self,request):
         if not "id" in request.query_params:
-            return create_response({}, ID_NOT_PROVIDED, status_code=400)
+            return create_response({}, ID_NOT_PROVIDED, 400)
         else:
             instance = self.serializer_class.Meta.model.objects.filter(id=request.query_params.get('id')).first()
             if not instance:
-                return create_response({}, NOT_FOUND, status=404)
+                return create_response({}, NOT_FOUND, 404)
             
             serialized_data = self.serializer_class(instance, data=request.data, partial=True)
             if serialized_data.is_valid():
                 response_data = serialized_data.save()
-                return create_response(self.serializer_class(response_data).data, SUCCESSFUL, status_code=200)
+                return create_response(self.serializer_class(response_data).data, SUCCESSFUL, 200)
             else:
-                return create_response({},get_first_error_message(serialized_data.errors,UNSUCCESSFUL), status_code=400)
+                return create_response({},get_first_error_message(serialized_data.errors,UNSUCCESSFUL), 400)
 
     def delete(self,request):
         if not "id" in request.query_params:
-            return create_response({}, ID_NOT_PROVIDED, status_code=400)
+            return create_response({}, ID_NOT_PROVIDED, 400)
         instance = self.serializer_class.Meta.model.objects.filter(id=request.query_params.get("id")).first()
         if not instance:
-            return create_response({}, NOT_FOUND, status_code=404)
+            return create_response({}, NOT_FOUND, 404)
         instance.delete()
-        return create_response({}, SUCCESSFUL, status_code=200)
+        return create_response({}, SUCCESSFUL, 200)
 
