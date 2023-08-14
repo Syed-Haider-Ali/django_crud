@@ -21,7 +21,7 @@ class MakeAPIViewTest(APITestCase):
     def test_get_params(self):
         response = self.client.get(self.url + "?id=1")
         self.assertEqual(response.data['data']['count'], 1)    
-        self.assertEqual(response.status_code, 200)    
+        self.assertEqual(response.status_code, 200)   
 
 
 class VechileAPIViewTest(APITestCase):
