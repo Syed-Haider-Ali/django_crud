@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-0y)wjyc*2&&y$c5q47d!_u=-k6-@xaav%$ds&&j=mvdu)#7on2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
 
     'vechile',
     # "debug_toolbar",
+    "django_crontab",
 ]
 
 MIDDLEWARE = [
