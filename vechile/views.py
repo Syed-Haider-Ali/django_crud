@@ -23,8 +23,12 @@ class VechileAPIView(ModelViewSet):
     def delete(self,request):
         return vechile_controller.delete(request)
 
-    def get_aggregate(self, request):
-        return vechile_controller.get_aggregate(request)
+    def get_aggregations(self, request):
+        return vechile_controller.get_aggregations(request)
+    
+    def get_annotations(self, request):
+        return vechile_controller.get_annotations(request)
+
 
 
 
