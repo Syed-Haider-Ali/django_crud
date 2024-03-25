@@ -10,6 +10,8 @@ class Vechile(TimeStamps):
     make = models.ForeignKey(Make, on_delete=models.CASCADE)
     model = models.IntegerField()
     color = models.CharField(max_length=100)
+    purchase_rate = models.PositiveBigIntegerField(default=0)
+    price = models.PositiveBigIntegerField(default=0)
 
 
 

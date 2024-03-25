@@ -12,7 +12,7 @@ make_controller = MakeController()
 
 class VechileAPIView(ModelViewSet):
     def get(self,request):
-        return vechile_controller.get(request)
+        return vechile_controller.get_v2(request)
 
     def post(self,request):
         return vechile_controller.post(request)
@@ -22,6 +22,10 @@ class VechileAPIView(ModelViewSet):
 
     def delete(self,request):
         return vechile_controller.delete(request)
+
+    def get_aggregate(self, request):
+        return vechile_controller.get_aggregate(request)
+
 
 
 class MakeAPIView(ModelViewSet):
