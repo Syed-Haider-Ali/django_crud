@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from .controller import *
 from rest_framework.response import Response
+from .serializer import VechileSerializer, MakeSerializer
 
 
 
@@ -11,6 +12,7 @@ make_controller = MakeController()
 
 
 class VechileAPIView(ModelViewSet):
+    serializer_class = VechileSerializer
     def get(self,request):
         return vechile_controller.get_v2(request)
 
@@ -33,6 +35,7 @@ class VechileAPIView(ModelViewSet):
 
 
 class MakeAPIView(ModelViewSet):
+    serializer_class = MakeSerializer
     def get(self,request):
         return make_controller.get(request)
 
